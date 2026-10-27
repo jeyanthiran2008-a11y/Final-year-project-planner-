@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Capstone 39 project planning and report assistant">
+  <title>Capstone 39 — Project Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">CSE CAPSTONE · PROJECT 39</p>
+      <h1>Final-Year Project Planner</h1>
+      <p>Plan your project, organize your report, and convert weekly notes into a clear status update.</p>
+      <div class="hero-actions"><button id="exportDataBtn" class="button secondary">Export project data</button><button id="resetBtn" class="button ghost">Reset demo data</button></div>
+    </div>
+  </header>
+  <main class="wrap">
+    <nav class="tabs" aria-label="Project tools">
+      <button class="tab active" data-tab="ideas">Idea scorecard</button>
+      <button class="tab" data-tab="plan">Project plan</button>
+      <button class="tab" data-tab="report">Report assistant</button>
+      <button class="tab" data-tab="weekly">Weekly automation</button>
+      <button class="tab" data-tab="checklist">Readiness checklist</button>
+    </nav>
+
+    <section id="ideas" class="panel active">
+      <div class="section-head"><div><p class="eyebrow">01 · SELECT</p><h2>Project idea scorecard</h2></div><span class="pill">10 sample ideas</span></div>
+      <p class="muted">Scores are illustrative starting estimates, not research findings. Adjust them after checking scope, data access, skills, time, and supervisor feedback.</p>
+      <div class="table-scroll"><table><thead><tr><th>Project idea</th><th>Feasibility / 5</th><th>Impact / 5</th><th>Risk / 5</th><th>Weighted score</th></tr></thead><tbody id="ideaRows"></tbody></table></div>
+      <div class="callout"><strong>Scoring guide:</strong> Weighted score = 40% feasibility + 30% impact + 30% (6 − risk). Higher scores indicate a more promising starting point. Validate the result with your team.</div>
+    </section>
+
+    <section id="plan" class="panel">
+      <div class="section-head"><div><p class="eyebrow">02 · PLAN</p><h2>Project details and milestones</h2></div></div>
+      <form id="planForm" class="form-grid">
+        <label>Project title<input id="projectTitle" value="Final-Year Project Planner and Report Assistant" required></label>
+        <label>Team / student name<input id="teamName" placeholder="[Enter your team name]"></label>
+        <label>Supervisor<input id="supervisor" placeholder="[Enter supervisor name]"></label>
+        <label>Target completion date<input id="dueDate" type="date"></label>
+        <label class="wide">Problem statement<textarea id="problem" rows="3">Final-year teams can struggle to compare project ideas, plan milestones, organize report sections, and produce consistent progress updates.</textarea></label>
+        <label class="wide">Project objective<textarea id="objective" rows="3">Build a simple browser-based assistant that structures project planning and documentation using transparent templates and checklists.</textarea></label>
+        <div class="wide"><button class="button" type="submit">Save project details</button><span id="saveMessage" class="status" aria-live="polite"></span></div>
+      </form>
+      <h3>Milestone plan</h3>
+      <div class="table-scroll"><table><thead><tr><th>Week</th><th>Milestone</th><th>Evidence / deliverable</th><th>Status</th></tr></thead><tbody id="milestoneRows"></tbody></table></div>
+    </section>
+
+    <section id="report" class="panel">
+      <div class="section-head"><div><p class="eyebrow">03 · DOCUMENT</p><h2>Report-section assistant</h2></div></div>
+      <p class="muted">Add your own notes first. The tool creates a structured draft, not verified research or a finished report.</p>
+      <label>Choose section<select id="reportSection"><option value="abstract">Abstract</option><option value="literature">Literature review plan</option><option value="design">System design</option><option value="testing">Testing and evaluation</option><option value="conclusion">Conclusion and future work</option></select></label>
+      <label>Your notes and evidence<textarea id="reportNotes" rows="7" placeholder="Write your actual project notes, design choices, test observations, and verified sources here..."></textarea></label>
+      <div class="actions"><button id="draftBtn" class="button">Create structured draft</button><button id="downloadReportBtn" class="button secondary">Export draft as .txt</button></div>
+      <label>Draft output<textarea id="reportOutput" rows="12" placeholder="Your draft will appear here. Review and rewrite it in your own words."></textarea></label>
+      <p class="small muted">Never invent citations, experiments, results, or claims. Add source details and check every factual statement.</p>
+    </section>
+
+    <section id="weekly" class="panel">
+      <div class="section-head"><div><p class="eyebrow">04 · AUTOMATE</p><h2>Weekly notes → status report</h2></div></div>
+      <p class="muted">Paste notes from your real team meeting. The workflow organizes them into completed work, next steps, blockers, and support needed.</p>
+      <label>Week ending<input id="weekEnding" type="date"></label>
+      <label>Weekly progress notes<textarea id="weeklyNotes" rows="7" placeholder="Example: Reviewed three official project guidelines; teammate A drafted the problem statement; still need supervisor approval; next week compare two approaches..."></textarea></label>
+      <div class="actions"><button id="generateStatusBtn" class="button">Generate status report</button><button id="downloadStatusBtn" class="button secondary">Export status report</button></div>
+      <label>Generated status report<textarea id="statusOutput" rows="12" placeholder="The organized status report will appear here."></textarea></label>
+      <p class="small muted">This is a local rule-based automation, not an external AI model. Check the report before sharing.</p>
+    </section>
+
+    <section id="checklist" class="panel">
+      <div class="section-head"><div><p class="eyebrow">05 · VERIFY</p><h2>Project readiness checklist</h2></div><span id="checkProgress" class="pill">0% complete</span></div>
+      <div id="checklistItems" class="checklist"></div>
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      <p class="muted small">Tick an item only when you have evidence that it is complete. Checklist state is saved in this browser.</p>
+    </section>
+    <footer><p>Capstone 39 · Student project starter · No data is sent to a server.</p></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
